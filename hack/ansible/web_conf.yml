@@ -1,0 +1,21 @@
+---
+- name: Web server configuration of managed hosts
+  hosts: all
+  tasks:
+    - name: Installing pkgs
+      apt:
+        name: nginx
+        state: present
+        update_cache: yes
+        force_apt_get: yes
+
+    - name: Copying configuration template
+      template:
+        src: web_conf.j2
+        dest: /etc/nginx/sites-available/default
+
+    - name: Restarting nginx
+      service:
+        name: nginx
+        state: restarted
+        enabled: true

@@ -1,0 +1,16 @@
+---
+- name: Running application on managed hosts
+  hosts: all
+  tasks:
+    - name: Pulling application image from docker
+      docker_image:
+        name: iampushkarpawar/todoapp:v1.0
+
+    - name: Run application image
+      docker_container:
+        name: todoapp
+        image: iampushkarpawar/todoapp:v1.0
+        state: started
+        ports:
+          - "3000:3000"
+        detach: true

@@ -1,0 +1,11 @@
+##Web server configuration playbook
+- import_playbook: web_conf.yml
+
+##Docker configuration playbook
+- import_playbook: docker_conf.yml
+
+##CodeDeploy Installtion playbook
+- import_playbook: agent.yml
+
+##Run Application
+- import_playbook: run_app.yml
